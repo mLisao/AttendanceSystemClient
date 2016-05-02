@@ -18,8 +18,36 @@ android {
     }
 }
 
+def supportVersion = "23.3.0"
+def okHttp3Version = "3.1.2"
+def retrofit2Version = "2.0.0"
+def glideVersion = "3.7.0"
+def stethoVersion = "1.3.1"
+def butterKnife = "7.0.1"
+
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.+'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+    //okHttp
+    compile "com.squareup.okhttp3:okhttp:${okHttp3Version}"
+    //retrofit2
+    compile "com.squareup.retrofit2:retrofit:${retrofit2Version}"
+    compile "com.squareup.retrofit2:adapter-rxjava:${retrofit2Version}"
+    //stetho
+    compile "com.facebook.stetho:stetho:${stethoVersion}"
+    //rx
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    //json
+    compile 'com.alibaba:fastjson:1.2.8'
+    //Eventbus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    //butterKnife
+    compile "com.jakewharton:butterknife:${butterKnife}"
+    //Image加载
+    compile "com.github.bumptech.glide:glide:${glideVersion}"
+
+    compile "com.android.support:appcompat-v7:${supportVersion}"
+    compile "com.android.support:design:${supportVersion}"
+    compile "com.android.support:recyclerview-v7:${supportVersion}"
 }
