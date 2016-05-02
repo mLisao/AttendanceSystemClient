@@ -1,1 +1,1 @@
-include ':app', ':lisaolibrary'
+include ':app', ':lisaolibrary', ':libzxing'
