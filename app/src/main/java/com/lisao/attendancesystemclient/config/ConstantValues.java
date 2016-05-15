@@ -7,6 +7,9 @@ import com.lisao.attendancesystemclient.app.CustomApplication;
  * 应用常量
  */
 public class ConstantValues {
+
+    public static final String FACECORE_KEY = "07cdd18499da01e3be99853788c40037";
+
     //缓存目录
     public static final String CACHEDIR = CustomApplication.getInstance().getCacheDir().getPath();
 

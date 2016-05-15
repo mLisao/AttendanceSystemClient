@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.lisao.attendancesystemclient.R;
+import com.lisao.lisaolibrary.logger.Logger;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -15,7 +18,7 @@ import java.lang.reflect.Method;
 /**
  * Created by lisao on 2016/1/8.
  */
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends AppCompatActivity {
     protected Context mContext;
 
     @Override
@@ -31,7 +34,7 @@ public abstract class BaseActivity extends Activity {
             Field[] fields = this.getClass().getDeclaredFields();
             for (int i = 0; i < fields.length; i++) {
                 fields[i].setAccessible(true);
-                if (fields[i].getAnnotation(ViewBind.class) != null) {
+                if (View.class.isAssignableFrom(fields[i].getType())&&fields[i].getAnnotation(ViewBind.class) != null) {
                     int viewId = fields[i].getAnnotation(ViewBind.class).value();
                     if (viewId == 0) {
                         String fieldName = fields[i].getName();

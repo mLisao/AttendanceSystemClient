@@ -19,9 +19,11 @@ import java.lang.reflect.Field;
 public abstract class BaseFragment extends Fragment {
     protected View layoutView;
     protected int ViewId;
+    protected Context mContext;
 
     @Override
     public void onAttach(Context context) {
+        this.mContext = context;
         super.onAttach(context);
     }
 

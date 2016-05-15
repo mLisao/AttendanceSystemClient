@@ -39,7 +39,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initValue() {
-        handler.sendEmptyMessageDelayed(GO_HOME,3000);
+        handler.sendEmptyMessageDelayed(GO_HOME,1000);
     }
 
     @Override
