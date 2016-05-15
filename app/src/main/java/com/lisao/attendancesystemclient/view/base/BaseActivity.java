@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -34,7 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             Field[] fields = this.getClass().getDeclaredFields();
             for (int i = 0; i < fields.length; i++) {
                 fields[i].setAccessible(true);
-                if (View.class.isAssignableFrom(fields[i].getType())&&fields[i].getAnnotation(ViewBind.class) != null) {
+                if (View.class.isAssignableFrom(fields[i].getType()) && fields[i].getAnnotation(ViewBind.class) != null) {
                     int viewId = fields[i].getAnnotation(ViewBind.class).value();
                     if (viewId == 0) {
                         String fieldName = fields[i].getName();
@@ -60,6 +62,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initValue();
 
     protected abstract void setListener();
+
+    public void setSupportToolBar(Toolbar toolBar) {
+        setSupportToolBar(toolBar, true);
+    }
+
+    public void setSupportToolBar(Toolbar toolBar, boolean showHomeUp) {
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(showHomeUp);
+    }
 
     protected String ScreenName() {
         return this.getClass().getSimpleName();
@@ -115,6 +126,14 @@ public abstract class BaseActivity extends AppCompatActivity {
             mToast.setText(msg);
             mToast.show();
         }
+    }
+
+    protected void showSnackBar(View view, String msg) {
+        Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
+    }
+
+    protected void showSnackBar(View view, int msgId) {
+        Snackbar.make(view, msgId, Snackbar.LENGTH_SHORT).show();
     }
 
     /**

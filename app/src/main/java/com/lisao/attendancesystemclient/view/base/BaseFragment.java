@@ -43,6 +43,7 @@ public abstract class BaseFragment extends Fragment {
             Field[] fields = this.getClass().getDeclaredFields();
             for (int i = 0; i < fields.length; i++) {
                 if (fields[i].getAnnotation(ViewBind.class) != null) {
+                    fields[i].setAccessible(true);
                     int id = fields[i].getAnnotation(ViewBind.class).value();
                     fields[i].set(this, findViewById(id));
                 }

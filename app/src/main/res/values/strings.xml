@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AttendanceSystemClient</string>
+    <string name="please_input_number">请输入学号或者工号</string>
+    <string name="please_input_password">请输入密码</string>
 </resources>
