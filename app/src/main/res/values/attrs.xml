@@ -4,4 +4,11 @@
         <attr name="setting_name" format="string" />
         <attr name="setting_tips" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="CustomActionBarHeaderView">
+        <attr name="only_title" format="boolean" />
+        <attr name="only_left_icon" format="boolean" />
+        <attr name="left_title" format="string" />
+        <attr name="left_icon" format="reference" />
+    </declare-styleable>
 </resources>
