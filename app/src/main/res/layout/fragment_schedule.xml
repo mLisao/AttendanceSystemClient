@@ -8,14 +8,25 @@
     <com.lisao.attendancesystemclient.widget.CustomActionBarHeaderView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:only_title="true"
-        app:left_title="课表" />
+        app:left_title="课表"
+        app:only_title="true" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="登陆界面" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登陆图片选取" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
