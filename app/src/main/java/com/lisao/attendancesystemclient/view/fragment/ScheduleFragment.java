@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.lisao.attendancesystemclient.R;
+import com.lisao.attendancesystemclient.presenters.FaceCorePresenter;
+import com.lisao.attendancesystemclient.presenters.vu.FaceView;
 import com.lisao.attendancesystemclient.utils.ImageUtil;
 import com.lisao.attendancesystemclient.utils.RecylerViewManagerFactory;
 import com.lisao.attendancesystemclient.view.activity.LoginActivity;
@@ -22,7 +24,7 @@ import com.lisao.attendancesystemclient.view.base.ViewBind;
  * Created by lisao on 2016/5/11.
  */
 @ViewBind(R.layout.fragment_schedule)
-public class ScheduleFragment extends BaseFragment implements View.OnClickListener {
+public class ScheduleFragment extends BaseFragment implements View.OnClickListener, FaceView {
     @ViewBind(R.id.recyclerView)
     private RecyclerView recyclerView;
 
@@ -35,12 +37,15 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
     @ViewBind(R.id.image)
     private ImageView image;
 
+
     private GridLayoutManager layoutManager;
     private static final int SELECT_PHOTO = 1;
+    private FaceCorePresenter faceCorePresenter;
 
     @Override
     protected void initValue() {
         layoutManager = RecylerViewManagerFactory.creatVerticalGridManger(mContext, 3);
+        faceCorePresenter = new FaceCorePresenter(this);
     }
 
     @Override
@@ -58,8 +63,9 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.button2:
-                intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, SELECT_PHOTO);
+                faceCorePresenter.testFaceHello();
+//                intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                startActivityForResult(intent, SELECT_PHOTO);
         }
     }
 
