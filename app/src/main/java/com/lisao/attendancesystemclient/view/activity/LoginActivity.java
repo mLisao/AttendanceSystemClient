@@ -17,6 +17,7 @@ import com.lisao.attendancesystemclient.presenters.AccountPresenter;
 import com.lisao.attendancesystemclient.presenters.vu.AccountView;
 import com.lisao.attendancesystemclient.view.base.BaseActivity;
 import com.lisao.attendancesystemclient.view.base.ViewBind;
+import com.lisao.attendancesystemclient.widget.IOSButton;
 
 /**
  * Created by lisao on 2016/5/15.
@@ -26,8 +27,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @ViewBind(R.id.toolbar)
     private Toolbar toolbar;
 
-    @ViewBind(R.id.login)
-    private Button login;
+    @ViewBind(R.id.btn_sign_login)
+    private IOSButton btn_sign_login;
 
     @ViewBind(R.id.number)
     private TextInputEditText tx_number;
@@ -49,13 +50,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     protected void setListener() {
-        login.setOnClickListener(this);
+        btn_sign_login.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.login:
+            case R.id.btn_sign_login:
                 accountLogin();
                 break;
         }

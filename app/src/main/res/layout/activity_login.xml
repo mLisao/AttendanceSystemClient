@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,7 +10,9 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/number"
@@ -21,7 +24,10 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="48dp"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/password"
@@ -31,14 +37,42 @@
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/teacherCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="教师登陆" />
-
-    <Button
-        android:id="@+id/login"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/teacherCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="教师登陆" />
+
+        <TextView
+            android:id="@+id/txt_sign_forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/forget_password"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <com.lisao.attendancesystemclient.widget.IOSButton
+        android:id="@+id/btn_sign_login"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/sign_in"
+        android:textSize="18sp"
+        app:btn_strokeWidth="0dp"
+        app:btn_text_unpressColor="@color/colorWhite"
+        app:btn_unpressColor="@color/color_gray_333" />
 </LinearLayout>

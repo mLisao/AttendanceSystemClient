@@ -1,9 +1,17 @@
 <resources>
     <string name="app_name">课堂签到</string>
-    <string name="please_input_number">请输入学号或者工号</string>
-    <string name="please_input_password">请输入密码</string>
 
     <string name="tab_1">课表</string>
     <string name="tab_2">校园</string>
     <string name="tab_3">个人</string>
+
+    <string name="sign_in">登录</string>
+    <string name="teacher_sign_in">教师登录</string>
+    <string name="forget_password">忘记密码</string>】
+    <string name="please_input_number">请输入学号或者工号</string>
+    <string name="please_input_password">请输入密码</string>
+    <string name="input_number_notnull">学号或工号不可以为空</string>
+    <string name="input_password_notnull">密码不可以为空</string>
+
+    <string name="digits">1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_.$</string>
 </resources>

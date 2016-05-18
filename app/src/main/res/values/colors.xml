@@ -14,4 +14,7 @@
     <color name="tab_text_select">#2c2c2c</color>
     <color name="tab_text_unselect">#a9b7b7</color>
 
+    <color name="color_gray_eee">#eeeeee</color>
+    <color name="color_gray_333">#333333</color>
+
 </resources>

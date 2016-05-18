@@ -68,7 +68,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     fragments[0] = new ScheduleFragment();
                     transaction.add(CONTAINER, fragments[0]);
                 }
-                iv_tab1.setImageResource(R.mipmap.ic_class_select);
+                iv_tab1.setImageResource(R.mipmap.ic_schedule_select);
                 tv_tab1.setTextColor(getResources().getColor(R.color.tab_text_select));
                 break;
             case 1:
@@ -96,7 +96,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
      * 重新设置颜色
      */
     private void resetColor() {
-        iv_tab1.setImageResource(R.mipmap.ic_class_unselect);
+        iv_tab1.setImageResource(R.mipmap.ic_schedule_unselect);
         tv_tab1.setTextColor(getResources().getColor(R.color.tab_text_unselect));
         iv_tab2.setImageResource(R.mipmap.ic_school_unselect);
         tv_tab2.setTextColor(getResources().getColor(R.color.tab_text_unselect));

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -32,7 +33,7 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
     private Button button;
 
     @ViewBind(R.id.button2)
-    private Button button2;
+    private AppCompatButton button2;
 
     @ViewBind(R.id.image)
     private ImageView image;
