@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lisao.attendancesystemclient.R;
 import com.lisao.attendancesystemclient.entity.TimeTableModel;
@@ -50,6 +49,19 @@ public class ScheduleTableView extends LinearLayout {
     int colornum = 0;
     //数据源
     private List<TimeTableModel> mListTimeTable = new ArrayList<>();
+
+
+    private UnEmptyAreaClickListener unEmptyAreaClickListener;//非空白区域的点击
+
+    private EmptyAreaClickListener emptyAreaClickListener;//空白区域的点击
+
+    public void setUnEmptyAreaClickListener(UnEmptyAreaClickListener unEmptyAreaClickListener) {
+        this.unEmptyAreaClickListener = unEmptyAreaClickListener;
+    }
+
+    public void setEmptyAreaClickListener(EmptyAreaClickListener emptyAreaClickListener) {
+        this.emptyAreaClickListener = emptyAreaClickListener;
+    }
 
     public ScheduleTableView(Context context) {
         super(context);
@@ -199,7 +211,8 @@ public class ScheduleTableView extends LinearLayout {
             mTime.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "星期" + week + "第" + (start + num) + "节", Toast.LENGTH_LONG).show();
+                    if (emptyAreaClickListener != null)
+                        emptyAreaClickListener.OnEmptyAreaClick(week, start, num);
                 }
             });
 
@@ -265,7 +278,8 @@ public class ScheduleTableView extends LinearLayout {
         mTimeTableView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), model.getName() + "@" + model.getClassroom(), Toast.LENGTH_LONG).show();
+                if (unEmptyAreaClickListener != null)
+                    unEmptyAreaClickListener.onUnEmptyAreaClick(model);
             }
         });
         return mTimeTableView;
@@ -326,5 +340,19 @@ public class ScheduleTableView extends LinearLayout {
             }
         }
         return num;
+    }
+
+    /**
+     * 空白区域点击
+     */
+    public interface EmptyAreaClickListener {
+        void OnEmptyAreaClick(int week, int start, int num);
+    }
+
+    /**
+     * 非空白区域点击 课表点击
+     */
+    public interface UnEmptyAreaClickListener {
+        void onUnEmptyAreaClick(TimeTableModel model);
     }
 }

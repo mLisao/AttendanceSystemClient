@@ -1,8 +1,10 @@
 package com.lisao.attendancesystemclient.view.fragment;
 
+import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.lisao.attendancesystemclient.R;
+import com.lisao.attendancesystemclient.entity.Schedule;
 import com.lisao.attendancesystemclient.entity.TimeTableModel;
 import com.lisao.attendancesystemclient.view.base.BaseFragment;
 import com.lisao.attendancesystemclient.view.base.ViewBind;
@@ -15,16 +17,21 @@ import java.util.List;
  * Created by lisao on 2016/5/11.
  */
 @ViewBind(R.layout.fragment_schedule)
-public class ScheduleFragment extends BaseFragment implements View.OnClickListener {
+public class ScheduleFragment extends BaseFragment implements
+        View.OnClickListener,
+        ScheduleTableView.EmptyAreaClickListener,
+        ScheduleTableView.UnEmptyAreaClickListener {
 
     @ViewBind(R.id.time_schedule)
     private ScheduleTableView mTimaTableView;
 
     private List<TimeTableModel> mList;
+    private List<Schedule> mSchedules;
 
     @Override
     protected void initValue() {
-        mList = new ArrayList<TimeTableModel>();
+        mList = new ArrayList<>();
+        mSchedules = new ArrayList<>();
         addList();
         mTimaTableView.setTimeTable(mList);
     }
@@ -45,10 +52,21 @@ public class ScheduleFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     protected void setListener() {
+        mTimaTableView.setEmptyAreaClickListener(this);
+        mTimaTableView.setUnEmptyAreaClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
     }
 
+    @Override
+    public void OnEmptyAreaClick(int week, int start, int num) {
+        Snackbar.make(mTimaTableView, "星期" + week + "第" + (start + num) + "节", Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onUnEmptyAreaClick(TimeTableModel model) {
+        Snackbar.make(mTimaTableView, model.getName(), Snackbar.LENGTH_SHORT).show();
+    }
 }
