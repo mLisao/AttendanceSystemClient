@@ -15,10 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.lisao.attendancesystemclient.widget.TimeTableView
+        <com.lisao.attendancesystemclient.widget.ScheduleTableView
             android:id="@+id/time_schedule"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical"></com.lisao.attendancesystemclient.widget.TimeTableView>
+            android:orientation="vertical"></com.lisao.attendancesystemclient.widget.ScheduleTableView>
     </ScrollView>
 </LinearLayout>

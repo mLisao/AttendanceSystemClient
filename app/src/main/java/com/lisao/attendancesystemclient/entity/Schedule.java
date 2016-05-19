@@ -8,7 +8,6 @@ import com.lisao.lisaolibrary.entity.BaseEntity;
  * 课堂信息
  */
 public class Schedule extends BaseEntity {
-
     private String name;//课程名字
     private long startTime;//上课开始时间
     private long endTime;//上课结束时间
@@ -18,6 +17,21 @@ public class Schedule extends BaseEntity {
     private Teacher teacher;//代课老师
     private int startWeek;//开始周数
     private int endWeek;//结束周数
+
+    public Schedule() {
+    }
+
+    public Schedule(String name, long startTime, long endTime, long endAttendTime, int week, String address, Teacher teacher, int startWeek, int endWeek) {
+        this.name = name;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.endAttendTime = endAttendTime;
+        this.week = week;
+        this.address = address;
+        this.teacher = teacher;
+        this.startWeek = startWeek;
+        this.endWeek = endWeek;
+    }
 
     public String getName() {
         return name;

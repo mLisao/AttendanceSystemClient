@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TimeTableView extends LinearLayout {
+public class ScheduleTableView extends LinearLayout {
     /**
      * 配色数组
      */
@@ -43,17 +43,19 @@ public class TimeTableView extends LinearLayout {
     private final static int TimeTableWeekNameHeight = 30;
     private LinearLayout mHorizontalWeekLayout;//第一行的星期显示
     private LinearLayout mVerticalWeekLaout;//课程格子
+
     private String[] weekname = {"一", "二", "三", "四", "五", "六", "七"};
+
     public static String[] colorStr = new String[20];
     int colornum = 0;
     //数据源
-    private List<TimeTableModel> mListTimeTable = new ArrayList<TimeTableModel>();
+    private List<TimeTableModel> mListTimeTable = new ArrayList<>();
 
-    public TimeTableView(Context context) {
+    public ScheduleTableView(Context context) {
         super(context);
     }
 
-    public TimeTableView(Context context, AttributeSet attributeSet) {
+    public ScheduleTableView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
     }
 

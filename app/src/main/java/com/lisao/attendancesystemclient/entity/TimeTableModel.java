@@ -1,123 +1,66 @@
 package com.lisao.attendancesystemclient.entity;
 
 public class TimeTableModel {
-	private int id;
-	private int startnum;
-	private int endnum;
-	private int week;
-	private String starttime="";
-	private String endtime="";
-	private String name="";
-	private String teacher="";
-	private String classroom="";
-	private String weeknum="";
+    private int startnum;
+    private int endnum;
+    private int week;
+    private String name = "";
+    private String classroom = "";
 
-	@Override
-	public String toString() {
-		return "TimeTableModel [id=" + id + ", startnum=" + startnum
-				+ ", endnum=" + endnum + ", week=" + week + ", starttime="
-				+ starttime + ", endtime=" + endtime + ", name=" + name
-				+ ", teacher=" + teacher + ", classroom=" + classroom
-				+ ", weeknum=" + weeknum + "]";
-	}
+    public int getStartnum() {
+        return startnum;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public int getEndnum() {
+        return endnum;
+    }
 
-	public int getStartnum() {
-		return startnum;
-	}
+    public int getWeek() {
+        return week;
+    }
 
-	public int getEndnum() {
-		return endnum;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public int getWeek() {
-		return week;
-	}
+    public String getClassroom() {
+        return classroom;
+    }
 
-	public String getStarttime() {
-		return starttime;
-	}
+    public void setStartnum(int startnum) {
+        this.startnum = startnum;
+    }
 
-	public String getEndtime() {
-		return endtime;
-	}
+    public void setEndnum(int endnum) {
+        this.endnum = endnum;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setWeek(int week) {
+        this.week = week;
+    }
 
-	public String getTeacher() {
-		return teacher;
-	}
 
-	public String getClassroom() {
-		return classroom;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getWeeknum() {
-		return weeknum;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setClassroom(String classroom) {
+        this.classroom = classroom;
+    }
 
-	public void setStartnum(int startnum) {
-		this.startnum = startnum;
-	}
 
-	public void setEndnum(int endnum) {
-		this.endnum = endnum;
-	}
+    public TimeTableModel() {
+        // TODO Auto-generated constructor stub
+    }
 
-	public void setWeek(int week) {
-		this.week = week;
-	}
-
-	public void setStarttime(String starttime) {
-		this.starttime = starttime;
-	}
-
-	public void setEndtime(String endtime) {
-		this.endtime = endtime;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setTeacher(String teacher) {
-		this.teacher = teacher;
-	}
-
-	public void setClassroom(String classroom) {
-		this.classroom = classroom;
-	}
-
-	public void setWeeknum(String weeknum) {
-		this.weeknum = weeknum;
-	}
-	public TimeTableModel() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public TimeTableModel(int id, int startnum, int endnum, int week,
-						  String starttime, String endtime, String name, String teacher,
-						  String classroom, String weeknum) {
-		super();
-		this.id = id;
-		this.startnum = startnum;
-		this.endnum = endnum;
-		this.week = week;
-		this.starttime = starttime;
-		this.endtime = endtime;
-		this.name = name;
-		this.teacher = teacher;
-		this.classroom = classroom;
-		this.weeknum = weeknum;
-	}
+    public TimeTableModel(int startnum, int endnum, int week, String name, String classroom) {
+        super();
+        this.startnum = startnum;
+        this.endnum = endnum;
+        this.week = week;
+        this.name = name;
+        this.classroom = classroom;
+    }
 
 }
