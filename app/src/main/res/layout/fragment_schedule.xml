@@ -11,26 +11,14 @@
         app:left_title="课表"
         app:only_title="true" />
 
-    <Button
-        android:id="@+id/button1"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="登陆界面" />
+        android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="图片选取" />
-
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
+        <com.lisao.attendancesystemclient.widget.TimeTableView
+            android:id="@+id/time_schedule"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"></com.lisao.attendancesystemclient.widget.TimeTableView>
+    </ScrollView>
 </LinearLayout>

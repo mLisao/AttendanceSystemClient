@@ -6,16 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lisao.attendancesystemclient.entity.Classe;
+import com.lisao.attendancesystemclient.entity.Schedule;
 
 import java.util.List;
 
 /**
  * Created by lisao on 2016/5/12.
  */
-public class ScheduleAdapter extends BaseRecyclerviewAdapter<Classe> {
+public class ScheduleAdapter extends BaseRecyclerviewAdapter<Schedule> {
 
-    public ScheduleAdapter(Context context, List<Classe> data) {
+    public ScheduleAdapter(Context context, List<Schedule> data) {
         super(context, data);
     }
 

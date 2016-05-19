@@ -27,9 +27,23 @@ public interface FaceCoreApi {
     @GET(FACE_HELLO)
     Observable<String> faceHello();
 
+    /**
+     * 获取人脸的特征值
+     *
+     * @param request
+     * @return
+     */
     @POST(FACEDATECT)
-    Observable<FaceDetectResult> facedatect(@Body FaceCompareRequest request);
+    Observable<FaceDetectResult> faceDatect(@Body FaceCompareRequest request);
 
+    /**
+     * 比较两个人脸区别
+     *
+     * @param request
+     * @return
+     */
     @POST(FACECOMPARE)
-    Observable<FaceCompareResult> facecompare(@Body FaceCompareRequest request);
+    Observable<FaceCompareResult> faceCompare(@Body FaceCompareRequest request);
+
+
 }
