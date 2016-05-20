@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.lisao.attendancesystemclient.R;
+import com.lisao.attendancesystemclient.view.activity.HomeActivity;
 import com.lisao.lisaolibrary.logger.Logger;
 
 import java.lang.reflect.Field;
@@ -127,6 +129,20 @@ public abstract class BaseActivity extends AppCompatActivity {
             mToast.show();
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            if (this instanceof HomeActivity) {
+                return false;
+            } else {
+                finish();
+            }
+        }
+        return true;
+    }
+
 
     protected void showSnackBar(View view, String msg) {
         Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
