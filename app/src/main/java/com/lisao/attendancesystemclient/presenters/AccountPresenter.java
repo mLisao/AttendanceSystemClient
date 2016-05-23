@@ -29,9 +29,9 @@ public class AccountPresenter extends BasePresenter<AccountView> {
     public void register(long number, String name, String password, boolean isTeacher) {
         Observable<String> observable = null;
         if (isTeacher) {
-            observable = accountApi.teacherRegister(number, name, password);
+            observable = accountApi.teacherRegister(name, password, number);
         } else {
-            observable = accountApi.studentRegister(number, name, password);
+            observable = accountApi.studentRegister(name, password, number);
         }
         onNetWork(observable)
                 .subscribe(new Action1<String>() {

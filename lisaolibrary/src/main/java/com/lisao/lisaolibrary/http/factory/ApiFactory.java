@@ -1,6 +1,7 @@
 package com.lisao.lisaolibrary.http.factory;
 
 import com.lisao.lisaolibrary.http.convert.FastJsonConvertFactory;
+import com.lisao.lisaolibrary.logger.Logger;
 
 import java.io.IOException;
 import java.util.Map;
@@ -48,9 +49,9 @@ public class ApiFactory {
                         }
 
                         Request request = requestBuilder.build();
-                        /*Logger.d("url:" + request.url()+"\n"+
-                                 "method:"+request.method()+"\n"+
-                                 "header:" +request.headers().toString());*/
+                        Logger.d("url:" + request.url() + "\n" +
+                                "method:" + request.method() + "\n" +
+                                "header:" + request.headers().toString());
 
                         return chain.proceed(request);
                     }

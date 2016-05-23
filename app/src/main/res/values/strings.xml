@@ -6,6 +6,7 @@
     <string name="tab_3">个人</string>
 
     <string name="sign_in">登录</string>
+    <string name="sign_up">注册</string>
     <string name="teacher_sign_in">教师登录</string>
     <string name="forget_password">忘记密码</string>】
     <string name="please_input_number">请输入学号或者工号</string>
@@ -14,4 +15,25 @@
     <string name="input_password_notnull">密码不可以为空</string>
 
     <string name="digits">1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_.$</string>
+
+    <string-array name="college">
+        <item>计算机学院</item>
+        <item>土木学院 </item>
+        <item>电气学院</item>
+    </string-array>
+
+    <string-array name="marjor">
+        <item>软件工程,计算机信息与技术,通信工程,网络安全,网络信息,物联网</item>
+        <item>土木学院专业1,土木学院专业2,土木学院专业3,土木学院专业4,土木学院专业5,土木学院专业6</item>
+        <item>电气学院专业1,电气学院专业2,电气学院专业3,电气学院专业4,电气学院专业5,电气学院专业6</item>
+    </string-array>
+
+    <string-array name="grade">
+        <item>12级</item>
+        <item>13级</item>
+        <item>14级</item>
+        <item>15级</item>
+        <item>16级</item>
+    </string-array>
+
 </resources>

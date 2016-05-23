@@ -12,12 +12,11 @@ public interface AccountApi {
     Observable<String> studentLogin(@Query("number") long number, @Query("password") String password);
 
     @POST("account/register")
-    Observable<String> studentRegister(@Query("number") long number, @Query("name") String name, @Query("password") String password);
+    Observable<String> studentRegister(@Query("name") String name, @Query("password") String password, @Query("number") long number);
 
     @POST("account/teacher/login")
     Observable<String> teacherLogin(@Query("number") long number, @Query("password") String password);
 
     @POST("account/teacher/register")
-    Observable<String> teacherRegister(@Query("number") long number, @Query("name") String name, @Query("password") String password);
-
+    Observable<String> teacherRegister(@Query("name") String name, @Query("password") String password, @Query("number") long number);
 }

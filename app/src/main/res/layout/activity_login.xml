@@ -50,17 +50,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="教师登陆" />
-
-        <TextView
-            android:id="@+id/txt_sign_forget_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="right"
-            android:layout_marginRight="4dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/forget_password"
-            android:textSize="12sp" />
     </RelativeLayout>
 
     <com.lisao.attendancesystemclient.widget.IOSButton
@@ -71,6 +60,19 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="56dp"
         android:text="@string/sign_in"
+        android:textSize="18sp"
+        app:btn_strokeWidth="0dp"
+        app:btn_text_unpressColor="@color/colorWhite"
+        app:btn_unpressColor="@color/color_gray_333" />
+
+    <com.lisao.attendancesystemclient.widget.IOSButton
+        android:id="@+id/btn_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/sign_up"
         android:textSize="18sp"
         app:btn_strokeWidth="0dp"
         app:btn_text_unpressColor="@color/colorWhite"
