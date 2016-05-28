@@ -102,4 +102,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void showFail(String msg) {
         showSnackBar(toolbar, msg);
     }
+
+    @Override
+    public void showStatus(boolean isSuccess, String msg) {
+
+    }
 }

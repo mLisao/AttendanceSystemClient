@@ -26,46 +26,57 @@
             android:padding="5dp">
 
             <TextView
-                android:id="@+id/schedule_teacher_name"
+                android:id="@+id/tv_schedule_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:text="贺军义"
+                android:text="中国近代史纲要"
                 android:textColor="@color/text_color"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <TextView
+                android:id="@+id/tv_schedule_teacher_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:text="贺军义"
+                android:text="李瑞芳"
                 android:textColor="@color/text_color"
                 android:textSize="18sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/divider_gray" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="贺军义"
-                android:textColor="@color/text_color"
-                android:textSize="18sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="贺军义"
-                android:textColor="@color/text_color"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/tv_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="1-16周 周四 5-6节"
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_week"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="15:00-16:50 一号教学楼"
+                    android:textColor="@color/text_color"
+                    android:textSize="18sp" />
+            </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -76,7 +87,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="56dp"
-        android:text="二维码识别"
+        android:text="二维码签到"
         android:textSize="18sp"
         app:btn_strokeWidth="0dp"
         app:btn_text_unpressColor="@color/colorWhite"

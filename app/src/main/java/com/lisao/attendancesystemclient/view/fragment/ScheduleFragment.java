@@ -7,6 +7,7 @@ import android.view.View;
 import com.lisao.attendancesystemclient.R;
 import com.lisao.attendancesystemclient.entity.Schedule;
 import com.lisao.attendancesystemclient.entity.TimeTableModel;
+import com.lisao.attendancesystemclient.utils.DialogUtil;
 import com.lisao.attendancesystemclient.view.activity.AttendActivity;
 import com.lisao.attendancesystemclient.view.base.BaseFragment;
 import com.lisao.attendancesystemclient.view.base.ViewBind;
@@ -75,7 +76,8 @@ public class ScheduleFragment extends BaseFragment implements
 
     @Override
     public void OnEmptyAreaClick(int week, int start, int num) {
-        Snackbar.make(mTimaTableView, "星期" + week + "第" + (start + num) + "节", Snackbar.LENGTH_SHORT).show();
+        DialogUtil.showUpdateVersion(mContext, "签到提示", "签到成功", null, null);
+//        Snackbar.make(mTimaTableView, "星期" + week + "第" + (start + num) + "节", Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

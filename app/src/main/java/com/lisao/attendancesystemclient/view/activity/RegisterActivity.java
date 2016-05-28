@@ -158,6 +158,11 @@ public class RegisterActivity extends BaseActivity implements AdapterView.OnItem
         showSnackBar(toolbar, msg);
     }
 
+    @Override
+    public void showStatus(boolean isSuccess, String msg) {
+
+    }
+
 
     class MarjorAdapter extends ArrayAdapter<CharSequence> {
 

@@ -4,4 +4,10 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AlertDialog" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <!--背景颜色及透明程度-->
+        <item name="android:background">@android:color/white</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 </resources>
