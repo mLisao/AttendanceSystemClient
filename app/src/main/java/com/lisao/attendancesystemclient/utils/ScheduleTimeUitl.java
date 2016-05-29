@@ -99,7 +99,7 @@ public class ScheduleTimeUitl {
     }
 
     public static String getTime(long timeMillis) {
-        Date date = new Date(timeMillis * 1000);
+        Date date = new Date(timeMillis);
         SimpleDateFormat format = new SimpleDateFormat(TIME_FORMATE_STR);
         return format.format(date);
     }

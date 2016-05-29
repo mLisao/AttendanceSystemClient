@@ -9,9 +9,14 @@ import android.widget.TextView;
 
 import com.lisao.attendancesystemclient.R;
 import com.lisao.attendancesystemclient.entity.Schedule;
+import com.lisao.attendancesystemclient.entity.Teacher;
 import com.lisao.attendancesystemclient.presenters.AttendPresenter;
+import com.lisao.attendancesystemclient.presenters.ScheduleDetailPresenter;
 import com.lisao.attendancesystemclient.presenters.vu.AttendView;
+import com.lisao.attendancesystemclient.presenters.vu.ScheduleDetailView;
 import com.lisao.attendancesystemclient.utils.DialogUtil;
+import com.lisao.attendancesystemclient.utils.ScheduleTimeUitl;
+import com.lisao.attendancesystemclient.utils.TimeUtil;
 import com.lisao.attendancesystemclient.view.base.BaseActivity;
 import com.lisao.attendancesystemclient.view.base.ViewBind;
 import com.lisao.attendancesystemclient.widget.IOSButton;
@@ -22,7 +27,7 @@ import com.xys.libzxing.zxing.activity.CaptureActivity;
  * Created by lisao on 2016/5/22.
  */
 @ViewBind(R.layout.acitivity_attend)
-public class AttendActivity extends BaseActivity implements View.OnClickListener, AttendView {
+public class AttendActivity extends BaseActivity implements View.OnClickListener, AttendView, ScheduleDetailView {
 
     @ViewBind(R.id.toolbar)
     private Toolbar toolbar;
@@ -48,15 +53,37 @@ public class AttendActivity extends BaseActivity implements View.OnClickListener
 
     private Schedule schedule;
 
-    private AttendPresenter presenter;
+    private AttendPresenter attendPresenter;
+    private ScheduleDetailPresenter scheduleDetailPresenter;
 
     @Override
     protected void initValue() {
         schedule = (Schedule) getIntent().getSerializableExtra(EXTRA_ENTIY);
         toolbar.setTitle(schedule.getName());
         tv_schedule_name.setText(schedule.getName());
-        tv_schedule_teacher_name.setText(schedule.getTeacherId() + "");
-        presenter = new AttendPresenter(this);
+        StringBuilder weekBuilder = new StringBuilder();
+        weekBuilder.append(schedule.getStartWeek())
+                .append("---")
+                .append(schedule.getEndWeek())
+                .append("周 ")
+                .append("周")
+                .append(schedule.getWeek())
+                .append(" ");
+        tv_week.setText(weekBuilder.toString());
+
+        StringBuilder addressBuilder = new StringBuilder();
+        Logger.d("schedule.getStartTime()" + schedule.getStartTime());
+        Logger.d("schedule.getEndTime()" + schedule.getEndTime());
+        addressBuilder.append(ScheduleTimeUitl.getTime(schedule.getStartTime()))
+                .append("---")
+                .append(ScheduleTimeUitl.getTime(schedule.getEndTime()))
+                .append(",")
+                .append(schedule.getAddress());
+        tv_address.setText(addressBuilder.toString());
+
+        attendPresenter = new AttendPresenter(this);
+        scheduleDetailPresenter = new ScheduleDetailPresenter(this);
+        scheduleDetailPresenter.getTeacher(schedule.getTeacherId());
         setSupportActionBar(toolbar);
     }
 
@@ -70,7 +97,7 @@ public class AttendActivity extends BaseActivity implements View.OnClickListener
         Intent intent = null;
         switch (v.getId()) {
             case R.id.btn_qr_code:
-                presenter.addAttend(1, 1);
+                attendPresenter.addAttend(1, 1);
         }
     }
 
@@ -86,5 +113,15 @@ public class AttendActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void showStatus(boolean isSuccess, String msg) {
 
+    }
+
+    @Override
+    public void showDetailSchedule(Schedule schedule) {
+
+    }
+
+    @Override
+    public void showDetailTeacher(Teacher teacher) {
+        tv_schedule_teacher_name.setText(teacher.getName());
     }
 }

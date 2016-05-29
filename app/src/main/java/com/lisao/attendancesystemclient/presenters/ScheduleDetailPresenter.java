@@ -5,8 +5,8 @@ import com.lisao.attendancesystemclient.api.ScheduleApi;
 import com.lisao.attendancesystemclient.api.TeacherApi;
 import com.lisao.attendancesystemclient.entity.Schedule;
 import com.lisao.attendancesystemclient.entity.Teacher;
+import com.lisao.attendancesystemclient.presenters.vu.ScheduleDetailView;
 import com.lisao.attendancesystemclient.presenters.vu.ScheduleView;
-import com.lisao.lisaolibrary.logger.Logger;
 
 import java.util.List;
 
@@ -15,29 +15,30 @@ import rx.functions.Action1;
 /**
  * Created by lisao on 2016/5/29.
  */
-public class SchedulePresenter extends BasePresenter<ScheduleView> {
+public class ScheduleDetailPresenter extends BasePresenter<ScheduleDetailView> {
 
     private ScheduleApi scheduleApi;
 
-    public SchedulePresenter(ScheduleView view) {
+    private TeacherApi teacherApi;
+
+    public ScheduleDetailPresenter(ScheduleDetailView view) {
         super(view);
         scheduleApi = ApiUtil.createApi(ScheduleApi.class);
+        teacherApi = ApiUtil.createApi(TeacherApi.class);
     }
 
-    public void getAllSchedule() {
-        onNetWork(scheduleApi.getAllSchedule())
-                .subscribe(new Action1<List<Schedule>>() {
+    public void getTeacher(int id) {
+        onNetWork(teacherApi.getTeacher(id))
+                .subscribe(new Action1<Teacher>() {
                     @Override
-                    public void call(List<Schedule> schedules) {
-                        getView().showSchedule(schedules);
+                    public void call(Teacher teacher) {
+                        getView().showDetailTeacher(teacher);
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
                         getView().showStatus(false, throwable.getMessage());
-                        Logger.e("getAllSchedule throwable " + throwable.getMessage());
                     }
                 });
     }
-
 }
