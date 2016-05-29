@@ -30,7 +30,7 @@ public class AttendActivity extends BaseActivity implements View.OnClickListener
     @ViewBind(R.id.btn_qr_code)
     private IOSButton btn_qr_code;
 
-    @ViewBind(R.id.btn_qr_code)
+    @ViewBind(R.id.tv_schedule_name)
     private TextView tv_schedule_name;
 
     @ViewBind(R.id.tv_schedule_teacher_name)
@@ -44,7 +44,7 @@ public class AttendActivity extends BaseActivity implements View.OnClickListener
 
     private static final int SCAN_QR_CODE = 1;
 
-    private static final String EXTRA_ENTIY = "entity";
+    public static final String EXTRA_ENTIY = "entity";
 
     private Schedule schedule;
 
@@ -53,6 +53,9 @@ public class AttendActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void initValue() {
         schedule = (Schedule) getIntent().getSerializableExtra(EXTRA_ENTIY);
+        toolbar.setTitle(schedule.getName());
+        tv_schedule_name.setText(schedule.getName());
+        tv_schedule_teacher_name.setText(schedule.getTeacherId() + "");
         presenter = new AttendPresenter(this);
         setSupportActionBar(toolbar);
     }
@@ -67,10 +70,7 @@ public class AttendActivity extends BaseActivity implements View.OnClickListener
         Intent intent = null;
         switch (v.getId()) {
             case R.id.btn_qr_code:
-                presenter.addAttend(1,1);
-//                intent = new Intent(this, CaptureActivity.class);
-//                startActivityForResult(intent, SCAN_QR_CODE);
-//                break;
+                presenter.addAttend(1, 1);
         }
     }
 

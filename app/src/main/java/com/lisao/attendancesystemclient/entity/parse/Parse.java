@@ -24,6 +24,7 @@ public class Parse {
         model.setEndnum(ScheduleTimeUitl.getNum(schedule.getEndTime()));
         model.setClassroom(schedule.getAddress());
         model.setWeek(schedule.getWeek());
+        model.setSchedule(schedule);
         return model;
     }
 

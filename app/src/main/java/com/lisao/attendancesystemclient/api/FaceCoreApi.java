@@ -45,5 +45,4 @@ public interface FaceCoreApi {
     @POST(FACECOMPARE)
     Observable<FaceCompareResult> faceCompare(@Body FaceCompareRequest request);
 
-
 }

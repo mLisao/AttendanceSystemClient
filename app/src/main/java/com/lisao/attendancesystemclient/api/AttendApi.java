@@ -16,6 +16,6 @@ public interface AttendApi {
      * @param attend
      * @return
      */
-    @POST("/api/attend/add")
+    @POST("attend/add")
     Observable<String> addAttend(@Body Attend attend);
 }

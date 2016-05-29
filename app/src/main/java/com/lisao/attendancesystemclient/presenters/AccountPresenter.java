@@ -5,8 +5,6 @@ import android.text.TextUtils;
 import com.alibaba.fastjson.JSON;
 import com.lisao.attendancesystemclient.api.AccountApi;
 import com.lisao.attendancesystemclient.api.ApiUtil;
-import com.lisao.attendancesystemclient.entity.ErrorCode;
-import com.lisao.attendancesystemclient.entity.Teacher;
 import com.lisao.attendancesystemclient.presenters.vu.AccountView;
 import com.lisao.lisaolibrary.logger.Logger;
 

@@ -7,6 +7,8 @@ import com.lisao.attendancesystemclient.presenters.vu.AttendView;
 import com.lisao.lisaolibrary.http.factory.ApiFactory;
 import com.lisao.lisaolibrary.logger.Logger;
 
+import java.util.Date;
+
 import rx.functions.Action1;
 
 /**
@@ -20,10 +22,10 @@ public class AttendPresenter extends BasePresenter<AttendView> {
         attendApi = ApiUtil.createApi(AttendApi.class);
     }
 
-    public void addAttend(int classRoomId, int studentId) {
+    public void addAttend(int scheduleId, int studentId) {
         Attend attend = new Attend();
-        attend.setAttendTime(System.currentTimeMillis());
-        attend.setClassRoomId(classRoomId);
+        attend.setAttendTime(new Date());
+        attend.setScheduleId(scheduleId);
         attend.setStudentId(studentId);
         onNetWork(attendApi.addAttend(attend))
                 .subscribe(new Action1<String>() {

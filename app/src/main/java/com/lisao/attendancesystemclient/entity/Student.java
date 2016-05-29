@@ -7,6 +7,7 @@ import com.lisao.lisaolibrary.entity.BaseEntity;
  * Created by lisao on 2016/1/8.
  */
 public class Student extends BaseEntity {
+    
     private String name;//姓名
     private String sex;//性别
     private long number;//学号
@@ -16,6 +17,16 @@ public class Student extends BaseEntity {
     private String college;//学院
     private String major;//专业
     private String grade;//年级
+    private String password;//密码
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public String getName() {
         return name;

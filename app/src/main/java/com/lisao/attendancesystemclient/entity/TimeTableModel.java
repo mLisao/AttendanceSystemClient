@@ -1,11 +1,20 @@
 package com.lisao.attendancesystemclient.entity;
 
 public class TimeTableModel {
+    private Schedule schedule;
     private int startnum;
     private int endnum;
     private int week;
     private String name = "";
     private String classroom = "";
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
 
     public int getStartnum() {
         return startnum;

@@ -3,35 +3,23 @@ package com.lisao.attendancesystemclient.entity;
 
 import com.lisao.lisaolibrary.entity.BaseEntity;
 
+import java.util.Date;
+
 /**
  * Created by lisao on 2016/1/8.
  * 课堂信息
  */
 public class Schedule extends BaseEntity {
+
     private String name;//课程名字
     private long startTime;//上课开始时间
     private long endTime;//上课结束时间
     private long endAttendTime;//结束签到时间
     private int week;//当前周数
     private String address;//上课地点
-    private Teacher teacher;//代课老师
+    private int teacherId;//代课老师
     private int startWeek;//开始周数
     private int endWeek;//结束周数
-
-    public Schedule() {
-    }
-
-    public Schedule(String name, long startTime, long endTime, long endAttendTime, int week, String address, Teacher teacher, int startWeek, int endWeek) {
-        this.name = name;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.endAttendTime = endAttendTime;
-        this.week = week;
-        this.address = address;
-        this.teacher = teacher;
-        this.startWeek = startWeek;
-        this.endWeek = endWeek;
-    }
 
     public String getName() {
         return name;
@@ -73,12 +61,12 @@ public class Schedule extends BaseEntity {
         this.address = address;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    public int getTeacherId() {
+        return teacherId;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setTeacherId(int teacherId) {
+        this.teacherId = teacherId;
     }
 
     public int getWeek() {
