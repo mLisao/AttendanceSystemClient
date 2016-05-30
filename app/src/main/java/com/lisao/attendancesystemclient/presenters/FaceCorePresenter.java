@@ -6,6 +6,9 @@ import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.lisao.attendancesystemclient.api.ApiUtil;
 import com.lisao.attendancesystemclient.api.FaceCoreApi;
+import com.lisao.attendancesystemclient.config.ConstantValues;
+import com.lisao.attendancesystemclient.config.ServerAddress;
+import com.lisao.attendancesystemclient.entity.Schedule;
 import com.lisao.attendancesystemclient.entity.facecore.FaceCompareRequest;
 import com.lisao.attendancesystemclient.entity.facecore.FaceDetectRequest;
 import com.lisao.attendancesystemclient.entity.facecore.FaceDetectResult;
@@ -16,6 +19,8 @@ import com.lisao.attendancesystemclient.entity.facecore.FaceSimilarResult;
 import com.lisao.attendancesystemclient.presenters.vu.FaceView;
 import com.lisao.attendancesystemclient.view.fragment.MeFragment;
 import com.lisao.lisaolibrary.logger.Logger;
+
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.RequestBody;
 import rx.Observable;
@@ -86,7 +91,7 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
 //                        Logger.d("FaceDetectRequest" + throwable.getMessage());
 //                    }
 //                });
-        onNetWork(coreApi.faceDatect(request))
+        onNetWork(coreApi.faceDatect(ConstantValues.FACECORE_KEY, request))
                 .subscribe(new Action1<FaceDetectResult>() {
                     @Override
                     public void call(FaceDetectResult faceDetectResult) {
@@ -108,13 +113,18 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
     public void addFace(final String faceId, final String nickName, final String base64Bitmap) {
         FaceDetectRequest request = new FaceDetectRequest();
         request.setFaceImage(base64Bitmap);
-        coreApi.faceDatect(request)
+        coreApi.faceDatect(ConstantValues.FACECORE_KEY, request)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.newThread())
                 .subscribe(new Action1<FaceDetectResult>() {
                     @Override
                     public void call(FaceDetectResult faceDetectResult) {
                         String base64feature = faceDetectResult.getFacemodels()[0].getBase64feature();
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         updateFace(faceId, nickName, base64Bitmap, base64feature);
                     }
                 }, new Action1<Throwable>() {
@@ -136,7 +146,7 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
         faceRequest.setBase64faceimage(base64Bitmap);
         faceRequest.setBase64feature(base64feature);
         faceRequest.setFaceid(idBulider.toString());
-        onNetWork(coreApi.updateFace(faceRequest))
+        onNetWork(coreApi.updateFace(ConstantValues.FACECORE_KEY, faceRequest))
                 .subscribe(new Action1<FaceResult>() {
                     @Override
                     public void call(FaceResult faceResult) {
@@ -158,19 +168,24 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
     public void findSimilarFace(String base64Bitmap) {
         FaceDetectRequest faceDetectRequest = new FaceDetectRequest();
         faceDetectRequest.setFaceImage(base64Bitmap);
-        coreApi.faceDatect(faceDetectRequest)
+        coreApi.faceDatect(ConstantValues.FACECORE_KEY, faceDetectRequest)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.newThread())
                 .subscribe(new Action1<FaceDetectResult>() {
                     @Override
                     public void call(FaceDetectResult faceDetectResult) {
                         if (faceDetectResult.getFacemodels() != null && faceDetectResult.getFacemodels().length > 0) {
                             String base64feature = faceDetectResult.getFacemodels()[0].getBase64feature();
-                            Logger.d("faceDetectResult.getFacemodels() " + faceDetectResult.getFacemodels());
+                            Logger.d("faceDetectResult.getFacemodels() " + JSON.toJSONString(faceDetectResult.getFacemodels()));
                             FaceSimilarRequest faceSimilarRequest = new FaceSimilarRequest();
                             faceSimilarRequest.setBase64feature(base64feature);
                             faceSimilarRequest.setMaxresult(10);
                             faceSimilarRequest.setThreshold(0.6f);
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             findSimilarFace(faceSimilarRequest);
                         }
                     }
@@ -183,7 +198,7 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
     }
 
     public void findSimilarFace(FaceSimilarRequest faceSimilarRequest) {
-        onNetWork(coreApi.getSimilar(faceSimilarRequest))
+        onNetWork(coreApi.getSimilar(ConstantValues.FACECORE_KEY, faceSimilarRequest))
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {
@@ -198,7 +213,8 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
     }
 
     public void getAll() {
-        onNetWork(coreApi.faceAll())
+        onNetWork(coreApi.faceAll(ConstantValues.FACECORE_KEY))
+                .throttleFirst(1000, TimeUnit.MILLISECONDS)
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {

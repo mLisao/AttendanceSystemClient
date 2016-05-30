@@ -5,6 +5,10 @@ import com.lisao.lisaolibrary.http.factory.ApiFactory;
 
 public class ApiUtil {
     public static <T> T createApi(Class clz) {
-        return ApiFactory.createRetrofitService(clz, ServerAddress.URL, null);
+        return ApiFactory.createRetrofitService(clz, ServerAddress.URL);
+    }
+
+    public static <T> T createApi(Class clz, String baseUrl) {
+        return ApiFactory.createRetrofitService(clz, baseUrl);
     }
 }

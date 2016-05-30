@@ -5,7 +5,7 @@ package com.lisao.attendancesystemclient.config;
  * 服务器地址
  */
 public class ServerAddress {
-    public static final String FACECORE = "http://api.facecore.cn";//人脸识别服务器接口
+    public static final String FACECORE = "http://api.facecore.cn/api/";//人脸识别服务器接口
 
-    public static final String URL = "http://172.20.233.1:8080/api/";
+    public static final String URL = "http://172.26.168.1:8080/api/";
 }

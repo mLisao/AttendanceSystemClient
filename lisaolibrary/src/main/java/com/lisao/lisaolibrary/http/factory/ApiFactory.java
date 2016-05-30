@@ -23,39 +23,30 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 public class ApiFactory {
 
     /**
-     * @param clazz     API 类型
-     * @param baseUrl   基础URL
-     * @param headerMap Http头信息
+     * @param clazz   API 类型
+     * @param baseUrl 基础URL
      * @param <T>
      * @return
      */
-    public static <T> T createRetrofitService(final Class clazz, String baseUrl, final Map<String, String> headerMap) {
+    public static <T> T createRetrofitService(final Class clazz, String baseUrl) {
         OkHttpClient okClient = new OkHttpClient.Builder()
-                .connectTimeout(20, TimeUnit.SECONDS)
-                .readTimeout(20, TimeUnit.SECONDS)
+//                .connectTimeout(20, TimeUnit.SECONDS)
+//                .readTimeout(20, TimeUnit.SECONDS)
+//                .writeTimeout(20, TimeUnit.SECONDS)
+//                .retryOnConnectionFailure(true)
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request original = chain.request();
                         Request.Builder requestBuilder;
-
-                        if (headerMap == null) {
-                            requestBuilder = original.newBuilder()
-                                    .header("Accept-Encoding", "")
-                                    .method(original.method(), original.body());
-                        } else {
-                            requestBuilder = original.newBuilder()
-                                    .headers(addHeaders(headerMap))
-                                    .header("Accept-Encoding", "")
-                                    .method(original.method(), original.body());
-                        }
-
+                        requestBuilder = original.newBuilder()
+                                .header("Accept-Encoding", "")
+                                .method(original.method(), original.body());
                         Request request = requestBuilder.build();
                         Logger.d("url:" + request.url() + "\n" +
                                 "method:" + request.method() + "\n" +
                                 "header:" + request.headers().toString()
                         );
-
                         return chain.proceed(request);
                     }
                 })
@@ -72,17 +63,5 @@ public class ApiFactory {
                 .build();
         T service = (T) client.create(clazz);
         return service;
-    }
-
-
-    private static Headers addHeaders(Map<String, String> header) {
-        Headers.Builder builder = new Headers.Builder();
-        if (header != null) {
-            for (Map.Entry<String, String> entry : header.entrySet()) {
-                builder.add(entry.getKey(), entry.getValue());
-            }
-
-        }
-        return builder.build();
     }
 }

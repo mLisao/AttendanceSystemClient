@@ -13,25 +13,27 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
  * Created by lisao on 2016/5/18.
  */
 public interface FaceCoreApi {
-    String FACE_HELLO = "/api/hello";//服务器测试接口，返回服务器当前时间。
-    String FACEPOINTSDETECT = "/api/facepointsdetect";//根据参数faceImage，获取图像中的人脸轮廓和特征点。
-    String FACEANGLESDETECT = "/api/faceanglesdetect";//根据参数faceImage，获取图像中的人脸角度。
-    String FACEDATECT = "/api/facedetect";//根据参数faceImage，获取图像中的人脸位置和特征。
-    String FACECOMPARE = "/api/facecompare";//根据参数facefeature1，facefeature2获取两个人脸的相似度。
-    String FACEDETECTANDCOMPARE = "/api/facedetectandcompare";//根据参数faceimage1,faceimage2获取两个人脸的相似度。
-    String FACEDETECTCOUNT = "/api/facedetectcount";//根据参数faceImage，获取图像中的人脸数量。
-    String URLFACEDETECT = "/api/urlfacedetect";//根据参数Url，获取图像中的人脸位置和特征。
-    String URLFACEDETECTANDCOMPARE = "/api/urlfacedetectandcompare";//根据参数url1,url2获取两个人脸的相似度。
-    String FACEDETECTAGEANDSEX = "/api/facedetectageandsex";//根据参数faceimage，获取图像中的人脸、眼睛位置和特征、年龄性别。
-    String PERSONFACESIMILAR = "/api/personface/similar";//获取人脸库中与目标人脸一定相似度的人脸
-    String PERSONFACEGETALL = "/api/personface/getall";//返回appkey存储的全部人脸
-    String FACEPERSONFACE = "/api/personface";//添加/修改一张人脸
+    String FACE_HELLO = "hello";//服务器测试接口，返回服务器当前时间。
+    String FACEPOINTSDETECT = "facepointsdetect";//根据参数faceImage，获取图像中的人脸轮廓和特征点。
+    String FACEANGLESDETECT = "faceanglesdetect";//根据参数faceImage，获取图像中的人脸角度。
+    String FACEDATECT = "facedetect";//根据参数faceImage，获取图像中的人脸位置和特征。
+    String FACECOMPARE = "facecompare";//根据参数facefeature1，facefeature2获取两个人脸的相似度。
+    String FACEDETECTANDCOMPARE = "facedetectandcompare";//根据参数faceimage1,faceimage2获取两个人脸的相似度。
+    String FACEDETECTCOUNT = "facedetectcount";//根据参数faceImage，获取图像中的人脸数量。
+    String URLFACEDETECT = "urlfacedetect";//根据参数Url，获取图像中的人脸位置和特征。
+    String URLFACEDETECTANDCOMPARE = "urlfacedetectandcompare";//根据参数url1,url2获取两个人脸的相似度。
+    String FACEDETECTAGEANDSEX = "facedetectageandsex";//根据参数faceimage，获取图像中的人脸、眼睛位置和特征、年龄性别。
+    String PERSONFACESIMILAR = "personface/similar";//获取人脸库中与目标人脸一定相似度的人脸
+    String PERSONFACEGETALL = "personface/getall";//返回appkey存储的全部人脸
+    String FACEPERSONFACE = "personface";//添加/修改一张人脸
+
 
     @GET(FACE_HELLO)
     Observable<String> faceHello();
@@ -43,7 +45,7 @@ public interface FaceCoreApi {
      * @return
      */
     @POST(FACEDATECT)
-    Observable<FaceDetectResult> faceDatect(@Body FaceDetectRequest request);
+    Observable<FaceDetectResult> faceDatect(@Query("appkey") String appke, @Body FaceDetectRequest request);
 
     /**
      * 比较两个人脸区别
@@ -52,7 +54,7 @@ public interface FaceCoreApi {
      * @return
      */
     @POST(FACECOMPARE)
-    Observable<FaceCompareResult> faceCompare(@Body FaceCompareRequest request);
+    Observable<FaceCompareResult> faceCompare(@Query("appkey") String appke, @Body FaceCompareRequest request);
 
     /**
      * 获取所有的人脸信息
@@ -60,7 +62,7 @@ public interface FaceCoreApi {
      * @return
      */
     @GET(PERSONFACEGETALL)
-    Observable<String> faceAll();
+    Observable<String> faceAll(@Query("appkey") String appkey);
 
     /**
      * 添加或修改一张人脸
@@ -69,7 +71,7 @@ public interface FaceCoreApi {
      * @return
      */
     @POST(FACEPERSONFACE)
-    Observable<FaceResult> updateFace(@Body FaceRequest request);
+    Observable<FaceResult> updateFace(@Query("appkey") String appke, @Body FaceRequest request);
 
     /**
      * 获取一定相似度的人脸
@@ -77,5 +79,5 @@ public interface FaceCoreApi {
      * @return
      */
     @POST(PERSONFACESIMILAR)
-    Observable<String> getSimilar(@Body FaceSimilarRequest request);
+    Observable<String> getSimilar(@Query("appkey") String appke, @Body FaceSimilarRequest request);
 }
