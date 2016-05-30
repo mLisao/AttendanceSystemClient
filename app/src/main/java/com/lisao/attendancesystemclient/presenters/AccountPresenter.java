@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.alibaba.fastjson.JSON;
 import com.lisao.attendancesystemclient.api.AccountApi;
 import com.lisao.attendancesystemclient.api.ApiUtil;
+import com.lisao.attendancesystemclient.entity.Student;
 import com.lisao.attendancesystemclient.presenters.vu.AccountView;
 import com.lisao.lisaolibrary.logger.Logger;
 
@@ -24,14 +25,8 @@ public class AccountPresenter extends BasePresenter<AccountView> {
         accountApi = ApiUtil.createApi(AccountApi.class);
     }
 
-    public void register(long number, String name, String password, boolean isTeacher) {
-        Observable<String> observable = null;
-        if (isTeacher) {
-            observable = accountApi.teacherRegister(name, password, number);
-        } else {
-            observable = accountApi.studentRegister(name, password, number);
-        }
-        onNetWork(observable)
+    public void register(Student student) {
+        onNetWork(accountApi.studentRegister(student))
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {
@@ -49,6 +44,7 @@ public class AccountPresenter extends BasePresenter<AccountView> {
                     }
                 });
     }
+
 
     public void login(long number, String password, boolean isTeacher) {
         Observable<String> observable = null;

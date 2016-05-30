@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
 import com.lisao.attendancesystemclient.R;
+import com.lisao.attendancesystemclient.entity.Student;
 import com.lisao.attendancesystemclient.presenters.AccountPresenter;
 import com.lisao.attendancesystemclient.presenters.vu.AccountView;
 import com.lisao.attendancesystemclient.view.base.BaseActivity;
@@ -143,7 +144,14 @@ public class RegisterActivity extends BaseActivity implements AdapterView.OnItem
             ed_register_repassword.setError("两次输入密码不一致");
             return;
         }
-        presenter.register(Long.parseLong(number), name, password, false);
+        Student student = new Student();
+        student.setNumber(Long.parseLong(number));
+        student.setName(name);
+        student.setPassword(password);
+        student.setCollege(college);
+        student.setMajor(marjor);
+        student.setGrade(grade);
+        presenter.register(student);
     }
 
 
