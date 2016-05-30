@@ -13,7 +13,7 @@ import retrofit2.Converter;
 public class FastJsonRequestBodyConvert<T> implements Converter<T, RequestBody> {
 
     private static final Charset UTF_8 = Charset.forName("UTF-8");
-    private static final MediaType MEDIA_TYPE = MediaType.parse("application/json; charset=UTF-8");
+    private static final MediaType MEDIA_TYPE = MediaType.parse("application/json;charset=UTF-8");
 
     @Override
     public RequestBody convert(T value) throws IOException {

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.lisao.attendancesystemclient.BuildConfig;
 import com.lisao.attendancesystemclient.R;
+import com.lisao.attendancesystemclient.view.activity.FaceActivity;
 import com.lisao.attendancesystemclient.view.activity.LoginActivity;
 import com.lisao.attendancesystemclient.view.base.BaseFragment;
 import com.lisao.attendancesystemclient.view.base.ViewBind;
@@ -73,7 +74,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 Snackbar.make(v, setting_suggest.getSettingName(), Snackbar.LENGTH_SHORT).show();
                 break;
             case R.id.setting_version:
-                Snackbar.make(v, setting_version.getSettingName(), Snackbar.LENGTH_SHORT).show();
+                startActivity(FaceActivity.class);
+//                Snackbar.make(v, setting_version.getSettingName(), Snackbar.LENGTH_SHORT).show();
                 break;
         }
     }

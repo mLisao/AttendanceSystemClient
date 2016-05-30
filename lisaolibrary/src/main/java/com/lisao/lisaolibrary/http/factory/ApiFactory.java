@@ -5,6 +5,7 @@ import com.lisao.lisaolibrary.logger.Logger;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -22,36 +23,38 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 public class ApiFactory {
 
     /**
-     *
-     * @param clazz API 类型
-     * @param baseUrl 基础URL
+     * @param clazz     API 类型
+     * @param baseUrl   基础URL
      * @param headerMap Http头信息
      * @param <T>
      * @return
      */
     public static <T> T createRetrofitService(final Class clazz, String baseUrl, final Map<String, String> headerMap) {
         OkHttpClient okClient = new OkHttpClient.Builder()
+                .connectTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request original = chain.request();
                         Request.Builder requestBuilder;
 
-                        if(headerMap==null){
+                        if (headerMap == null) {
                             requestBuilder = original.newBuilder()
-                                    .header("Accept-Encoding","")
+                                    .header("Accept-Encoding", "")
                                     .method(original.method(), original.body());
-                        }else{
+                        } else {
                             requestBuilder = original.newBuilder()
                                     .headers(addHeaders(headerMap))
-                                    .header("Accept-Encoding","")
+                                    .header("Accept-Encoding", "")
                                     .method(original.method(), original.body());
                         }
 
                         Request request = requestBuilder.build();
                         Logger.d("url:" + request.url() + "\n" +
                                 "method:" + request.method() + "\n" +
-                                "header:" + request.headers().toString());
+                                "header:" + request.headers().toString()
+                        );
 
                         return chain.proceed(request);
                     }
