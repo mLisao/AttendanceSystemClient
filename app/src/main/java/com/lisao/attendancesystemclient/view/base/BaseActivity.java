@@ -1,6 +1,7 @@
 package com.lisao.attendancesystemclient.view.base;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,8 @@ import java.lang.reflect.Method;
  */
 public abstract class BaseActivity extends AppCompatActivity {
     protected Context mContext;
+
+    protected ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,5 +161,21 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void startActivity(Class clz) {
         Intent intent = new Intent(this, clz);
         startActivity(intent);
+    }
+
+    protected void showLoadingDialog(String msg) {
+        if (dialog == null) {
+            dialog = ProgressDialog.show(this, "", msg, false, true);
+        } else {
+            dialog.setMessage(msg);
+        }
+        dialog.show();
+    }
+
+    protected void disMissDialog() {
+        if (dialog != null) {
+            dialog.dismiss();
+            dialog.cancel();
+        }
     }
 }

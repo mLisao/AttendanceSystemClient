@@ -32,12 +32,13 @@ public class AttendPresenter extends BasePresenter<AttendView> {
                     @Override
                     public void call(String s) {
                         Logger.e("addAttend call" + s);
+                        getView().showStatus(true, "签到成功！");
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
                         Logger.e("addAttend throwable " + throwable);
-
+                        getView().showStatus(false, "签到失败！");
                     }
                 });
     }

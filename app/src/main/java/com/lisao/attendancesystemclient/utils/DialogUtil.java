@@ -12,7 +12,7 @@ import com.lisao.attendancesystemclient.R;
 
 public class DialogUtil {
 
-    public static void showUpdateVersion(final Context context, String title, String msg, final onListener positive, final onListener negative) {
+    public static void showDailog(final Context context, String title, String msg, final onListener positive, final onListener negative) {
         View view = LayoutInflater.from(context).inflate(R.layout.custom_dailog_text_view, null);
         TextView tv = (TextView) view.findViewById(R.id.version_info);
         tv.setText(msg);

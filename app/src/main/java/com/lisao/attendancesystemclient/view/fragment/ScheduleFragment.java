@@ -85,7 +85,7 @@ public class ScheduleFragment extends BaseFragment implements
 
     @Override
     public void OnEmptyAreaClick(int week, int start, int num) {
-//        DialogUtil.showUpdateVersion(mContext, "签到提示", "签到成功", null, null);
+//        DialogUtil.showDailog(mContext, "签到提示", "签到成功", null, null);
     }
 
     @Override
