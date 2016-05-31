@@ -3,6 +3,7 @@ package com.lisao.attendancesystemclient.view.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.lisao.attendancesystemclient.R;
@@ -27,6 +28,8 @@ public class FaceActivity extends BaseActivity implements View.OnClickListener, 
     @ViewBind(R.id.btn_face)
     private IOSButton btn_face;
 
+    @ViewBind(R.id.toolbar)
+    private Toolbar toolbar;
 
     private static final int CAMERA_SCAN = 1;
     private static final int CAMERA_ADD = 2;
@@ -36,6 +39,7 @@ public class FaceActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void initValue() {
         faceCorePresenter = new FaceCorePresenter(this);
+        toolbar.setTitle("人脸管理");
     }
 
     @Override

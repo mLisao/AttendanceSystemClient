@@ -4,6 +4,7 @@ import android.support.multidex.MultiDexApplication;
 
 import com.facebook.stetho.Stetho;
 import com.lisao.attendancesystemclient.BuildConfig;
+import com.lisao.attendancesystemclient.utils.PreferencesUtil;
 
 
 /**
@@ -21,6 +22,14 @@ public class CustomApplication extends MultiDexApplication {
         super.onCreate();
         mInstance = this;
         initStetho();
+        initPreferences();
+    }
+
+    /***
+     * 初始化数据访问
+     */
+    private void initPreferences() {
+        PreferencesUtil.init(this);
     }
 
     /**

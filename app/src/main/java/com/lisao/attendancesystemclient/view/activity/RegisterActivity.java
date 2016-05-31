@@ -158,7 +158,6 @@ public class RegisterActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     public void showSuccess(String msg) {
         showSnackBar(toolbar, msg);
-        finish();
     }
 
     @Override

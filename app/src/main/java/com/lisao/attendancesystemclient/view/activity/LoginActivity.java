@@ -69,7 +69,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 break;
             case R.id.btn_sign_up:
                 intent = new Intent(this, RegisterActivity.class);
-                startActivityForResult(intent,START_REGISTER);
+                startActivityForResult(intent, START_REGISTER);
                 break;
         }
     }
@@ -95,6 +95,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void showSuccess(String msg) {
         showSnackBar(toolbar, msg);
+        startActivity(HomeActivity.class);
         finish();
     }
 

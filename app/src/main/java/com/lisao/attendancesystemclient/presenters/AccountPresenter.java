@@ -7,7 +7,10 @@ import com.lisao.attendancesystemclient.api.AccountApi;
 import com.lisao.attendancesystemclient.api.ApiUtil;
 import com.lisao.attendancesystemclient.entity.Student;
 import com.lisao.attendancesystemclient.presenters.vu.AccountView;
+import com.lisao.attendancesystemclient.utils.PreferencesUtil;
 import com.lisao.lisaolibrary.logger.Logger;
+
+import java.util.prefs.Preferences;
 
 import rx.Observable;
 import rx.functions.Action1;
@@ -46,7 +49,7 @@ public class AccountPresenter extends BasePresenter<AccountView> {
     }
 
 
-    public void login(long number, String password, boolean isTeacher) {
+    public void login(long number, String password, final boolean isTeacher) {
         Observable<String> observable = null;
         if (isTeacher) {
             observable = accountApi.teacherLogin(number, password);
@@ -59,7 +62,15 @@ public class AccountPresenter extends BasePresenter<AccountView> {
                     public void call(String s) {
                         String msg = JSON.parseObject(s).getString("msg");
                         if (TextUtils.isEmpty(msg)) {
+                            String name = JSON.parseObject(s).getString("name");
+                            long number = JSON.parseObject(s).getLong("number");
+                            long id = JSON.parseObject(s).getLong("id");
                             getView().showSuccess("登录成功");
+                            PreferencesUtil.putBoolean(PreferencesUtil.IS_LOGIN, true);
+                            PreferencesUtil.putLong(PreferencesUtil.NUMBER, number);
+                            PreferencesUtil.putString(PreferencesUtil.NAME, name);
+                            PreferencesUtil.putLong(PreferencesUtil.ID, id);
+                            PreferencesUtil.putBoolean(PreferencesUtil.IS_TEACHER, isTeacher);
                         } else {
                             getView().showFail(msg);
                         }

@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.lisao.attendancesystemclient.R;
+import com.lisao.attendancesystemclient.utils.PreferencesUtil;
 import com.lisao.attendancesystemclient.view.base.BaseActivity;
 import com.lisao.attendancesystemclient.view.base.ViewBind;
 
@@ -16,12 +17,22 @@ import com.lisao.attendancesystemclient.view.base.ViewBind;
 @ViewBind(R.layout.activity_splash)
 public class SplashActivity extends BaseActivity {
     private static final int GO_HOME = 1;
+    private static final int GO_LOGIN = 2;
+    private static final int GO_ADMIN = 3;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case GO_HOME:
                     startActivity(HomeActivity.class);
+                    finish();
+                    break;
+                case GO_LOGIN:
+                    startActivity(LoginActivity.class);
+                    finish();
+                    break;
+                case GO_ADMIN:
+                    startActivity(AttendActivity.class);
                     finish();
                     break;
                 default:
@@ -39,7 +50,15 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initValue() {
-        handler.sendEmptyMessageDelayed(GO_HOME,1000);
+        if (!PreferencesUtil.getBoolean(PreferencesUtil.IS_LOGIN, false)) {
+            handler.sendEmptyMessageDelayed(GO_LOGIN, 1000);
+        } else {
+            if (PreferencesUtil.getBoolean(PreferencesUtil.IS_TEACHER, false)) {
+                handler.sendEmptyMessageDelayed(GO_ADMIN, 1000);
+            } else {
+                handler.sendEmptyMessageDelayed(GO_HOME, 1000);
+            }
+        }
     }
 
     @Override

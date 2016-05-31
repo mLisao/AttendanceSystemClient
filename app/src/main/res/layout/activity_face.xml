@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/include_toolbar" />
+
     <com.lisao.attendancesystemclient.widget.IOSButton
         android:id="@+id/btn_face_getall"
         android:layout_width="match_parent"
