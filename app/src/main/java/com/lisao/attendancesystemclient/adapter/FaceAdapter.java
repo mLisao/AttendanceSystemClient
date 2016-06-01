@@ -1,4 +1,4 @@
-package com.lisao.attendancesystemclient.adapter.base;
+package com.lisao.attendancesystemclient.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lisao.attendancesystemclient.R;
+import com.lisao.attendancesystemclient.adapter.base.BaseRecyclerviewAdapter;
 import com.lisao.attendancesystemclient.entity.facecore.FaceAllResult;
 import com.lisao.attendancesystemclient.entity.facecore.SimilarResult;
 

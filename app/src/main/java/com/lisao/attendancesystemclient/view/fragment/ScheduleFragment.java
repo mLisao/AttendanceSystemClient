@@ -46,6 +46,7 @@ public class ScheduleFragment extends BaseFragment implements
 //        addList();
 //        mTimaTableView.setTimeTable(mList);
         schedulePresenter.getAllSchedule();//获取所有的课表数据
+        showLoadingDialog("课表加载中。");
     }
 
 //    private void addList() {
@@ -86,6 +87,7 @@ public class ScheduleFragment extends BaseFragment implements
     @Override
     public void OnEmptyAreaClick(int week, int start, int num) {
 //        DialogUtil.showDailog(mContext, "签到提示", "签到成功", null, null);
+        showSnackBar(mTimaTableView, "当前时间段没有课哟，好好休息");
     }
 
     @Override
@@ -106,6 +108,7 @@ public class ScheduleFragment extends BaseFragment implements
         mSchedules = schedules;
         mList = Parse.parse(schedules);
         mTimaTableView.setTimeTable(mList);
+        disMissDialog();
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.lisao.attendancesystemclient.BuildConfig;
 import com.lisao.attendancesystemclient.R;
 import com.lisao.attendancesystemclient.view.activity.FaceActivity;
 import com.lisao.attendancesystemclient.view.activity.LoginActivity;
+import com.lisao.attendancesystemclient.view.activity.MyAttendActivity;
 import com.lisao.attendancesystemclient.view.base.BaseFragment;
 import com.lisao.attendancesystemclient.view.base.ViewBind;
 import com.lisao.attendancesystemclient.widget.SettingView;
@@ -61,14 +62,15 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.user_avatar:
                 //跳转到登陆界面
-                intent = new Intent(mContext, LoginActivity.class);
-                startActivity(intent);
+//                intent = new Intent(mContext, LoginActivity.class);
+//                startActivity(intent);
                 break;
             case R.id.setting_my_room:
                 Snackbar.make(v, setting_my_room.getSettingName(), Snackbar.LENGTH_SHORT).show();
                 break;
             case R.id.setting_my_attend:
-                Snackbar.make(v, setting_my_attend.getSettingName(), Snackbar.LENGTH_SHORT).show();
+//                Snackbar.make(v, setting_my_attend.getSettingName(), Snackbar.LENGTH_SHORT).show();
+                startActivity(MyAttendActivity.class);
                 break;
             case R.id.setting_suggest:
                 Snackbar.make(v, setting_suggest.getSettingName(), Snackbar.LENGTH_SHORT).show();

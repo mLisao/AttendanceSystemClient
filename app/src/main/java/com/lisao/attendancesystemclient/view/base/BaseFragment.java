@@ -1,9 +1,11 @@
 package com.lisao.attendancesystemclient.view.base;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ public abstract class BaseFragment extends Fragment {
     protected View layoutView;
     protected int ViewId;
     protected Context mContext;
+    private ProgressDialog dialog;
 
     @Override
     public void onAttach(Context context) {
@@ -132,5 +135,29 @@ public abstract class BaseFragment extends Fragment {
         Intent intent = new Intent();
         intent.setClass(getContext(), clz);
         startActivity(intent);
+    }
+
+    protected void showSnackBar(View view, String msg) {
+        Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
+    }
+
+    protected void showSnackBar(View view, int msgId) {
+        Snackbar.make(view, msgId, Snackbar.LENGTH_SHORT).show();
+    }
+
+    protected void showLoadingDialog(String msg) {
+        if (dialog == null) {
+            dialog = ProgressDialog.show(mContext, "", msg, false, true);
+        } else {
+            dialog.setMessage(msg);
+        }
+        dialog.show();
+    }
+
+    protected void disMissDialog() {
+        if (dialog != null) {
+            dialog.dismiss();
+            dialog.cancel();
+        }
     }
 }

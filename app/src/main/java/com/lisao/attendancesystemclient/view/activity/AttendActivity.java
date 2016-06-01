@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.lisao.attendancesystemclient.R;
+import com.lisao.attendancesystemclient.entity.MyAttend;
 import com.lisao.attendancesystemclient.entity.Schedule;
 import com.lisao.attendancesystemclient.entity.Teacher;
 import com.lisao.attendancesystemclient.presenters.AttendPresenter;
@@ -15,12 +16,15 @@ import com.lisao.attendancesystemclient.presenters.ScheduleDetailPresenter;
 import com.lisao.attendancesystemclient.presenters.vu.AttendView;
 import com.lisao.attendancesystemclient.presenters.vu.ScheduleDetailView;
 import com.lisao.attendancesystemclient.utils.DialogUtil;
+import com.lisao.attendancesystemclient.utils.PreferencesUtil;
 import com.lisao.attendancesystemclient.utils.ScheduleTimeUitl;
 import com.lisao.attendancesystemclient.view.base.BaseActivity;
 import com.lisao.attendancesystemclient.view.base.ViewBind;
 import com.lisao.attendancesystemclient.widget.IOSButton;
 import com.lisao.lisaolibrary.logger.Logger;
 import com.xys.libzxing.zxing.activity.CaptureActivity;
+
+import java.util.List;
 
 /**
  * Created by lisao on 2016/5/22.
@@ -107,7 +111,7 @@ public class AttendActivity extends BaseActivity implements View.OnClickListener
             Bundle bundle = data.getExtras();
             String result = bundle.getString("result");
             Schedule schedule = JSON.parseObject(result, Schedule.class);
-            attendPresenter.addAttend((int) schedule.getId(), 1);
+            attendPresenter.addAttend((int) schedule.getId(), (int) PreferencesUtil.getLong(PreferencesUtil.ID, 1));
             showLoadingDialog("签到中。。。");
         }
     }
@@ -134,4 +138,8 @@ public class AttendActivity extends BaseActivity implements View.OnClickListener
     }
 
 
+    @Override
+    public void showMyAttend(List<MyAttend> attends) {
+
+    }
 }

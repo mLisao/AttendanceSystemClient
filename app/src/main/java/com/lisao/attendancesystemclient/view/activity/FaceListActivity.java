@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.alibaba.fastjson.JSON;
 import com.lisao.attendancesystemclient.R;
-import com.lisao.attendancesystemclient.adapter.base.FaceAdapter;
+import com.lisao.attendancesystemclient.adapter.FaceAdapter;
 import com.lisao.attendancesystemclient.entity.facecore.FaceAllResult;
 import com.lisao.attendancesystemclient.entity.facecore.FaceSimilarResult;
 import com.lisao.attendancesystemclient.entity.facecore.SimilarResult;

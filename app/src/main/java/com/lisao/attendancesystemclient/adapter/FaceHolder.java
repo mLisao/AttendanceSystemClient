@@ -1,4 +1,4 @@
-package com.lisao.attendancesystemclient.adapter.base;
+package com.lisao.attendancesystemclient.adapter;
 
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
