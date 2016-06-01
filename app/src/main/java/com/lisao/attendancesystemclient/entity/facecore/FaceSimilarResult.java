@@ -6,13 +6,13 @@ import java.util.List;
  * Created by lisao on 2016/5/30.
  */
 public class FaceSimilarResult {
-    private SimilarResult[] similarpersonface;
+    private List<SimilarResult> similarpersonface;
 
-    public SimilarResult[]  getSimilarpersonface() {
+    public List<SimilarResult>  getSimilarpersonface() {
         return similarpersonface;
     }
 
-    public void setSimilarpersonface(SimilarResult[]  similarpersonface) {
+    public void setSimilarpersonface(List<SimilarResult>  similarpersonface) {
         this.similarpersonface = similarpersonface;
     }
 }

@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.lisao.attendancesystemclient.R;
+import com.lisao.attendancesystemclient.entity.facecore.FaceAllResult;
+import com.lisao.attendancesystemclient.entity.facecore.FaceSimilarResult;
 import com.lisao.attendancesystemclient.presenters.FaceCorePresenter;
 import com.lisao.attendancesystemclient.presenters.vu.FaceView;
 import com.lisao.attendancesystemclient.utils.BitmapUtil;
@@ -40,6 +42,7 @@ public class FaceActivity extends BaseActivity implements View.OnClickListener, 
     protected void initValue() {
         faceCorePresenter = new FaceCorePresenter(this);
         toolbar.setTitle("人脸管理");
+        setSupportToolBar(toolbar);
     }
 
     @Override
@@ -58,7 +61,7 @@ public class FaceActivity extends BaseActivity implements View.OnClickListener, 
                 startActivityForResult(intent, CAMERA_SCAN);
                 break;
             case R.id.btn_face_getall:
-                faceCorePresenter.getAll();
+                startActivity(FaceListActivity.class);
                 break;
             case R.id.btn_face_add:
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -72,17 +75,29 @@ public class FaceActivity extends BaseActivity implements View.OnClickListener, 
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_SCAN && resultCode == RESULT_OK) {
             Bitmap bitmap = data.getParcelableExtra("data");
-            String s = BitmapUtil.bitmaptoString(bitmap);
-            faceCorePresenter.findSimilarFace(s);
+            Intent intent = new Intent(this, FaceListActivity.class);
+            intent.putExtra(FaceListActivity.EXTRA_BITMAP, bitmap);
+            startActivity(intent);
         } else if (requestCode == CAMERA_ADD && resultCode == RESULT_OK) {
             Bitmap bitmap = data.getParcelableExtra("data");
-            String s = BitmapUtil.bitmaptoString(bitmap);
-            faceCorePresenter.addFace(System.currentTimeMillis() + "", "张三", s);
+            Intent intent = new Intent(this, AddFaceActivity.class);
+            intent.putExtra(AddFaceActivity.EXTRA_IMAGE, bitmap);
+            startActivity(intent);
         }
     }
 
     @Override
     public void showStatus(boolean isSuccess, String msg) {
+
+    }
+
+    @Override
+    public void showSimilarFace(FaceSimilarResult result) {
+
+    }
+
+    @Override
+    public void showAllFace(FaceAllResult result) {
 
     }
 }

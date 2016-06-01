@@ -9,6 +9,7 @@ import com.lisao.attendancesystemclient.api.FaceCoreApi;
 import com.lisao.attendancesystemclient.config.ConstantValues;
 import com.lisao.attendancesystemclient.config.ServerAddress;
 import com.lisao.attendancesystemclient.entity.Schedule;
+import com.lisao.attendancesystemclient.entity.facecore.FaceAllResult;
 import com.lisao.attendancesystemclient.entity.facecore.FaceCompareRequest;
 import com.lisao.attendancesystemclient.entity.facecore.FaceDetectRequest;
 import com.lisao.attendancesystemclient.entity.facecore.FaceDetectResult;
@@ -130,12 +131,12 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-
+                        getView().showStatus(false, throwable.getMessage());
                     }
                 });
     }
 
-    public void updateFace(String faceId, String nickName, final String base64Bitmap, String base64feature) {
+    public void updateFace(final String faceId, String nickName, final String base64Bitmap, String base64feature) {
         FaceRequest faceRequest = new FaceRequest();
         StringBuilder idBulider = new StringBuilder();
         for (int i = 0; i < 20 - faceId.length(); i++) {
@@ -150,12 +151,12 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
                 .subscribe(new Action1<FaceResult>() {
                     @Override
                     public void call(FaceResult faceResult) {
-                        Logger.d("FaceDetectRequest" + JSON.toJSONString(faceResult));
+                        getView().showStatus(faceResult.isResult(), faceResult.getMessage());
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        Logger.d("FaceDetectRequest" + throwable.getMessage());
+                        getView().showStatus(false, throwable.getMessage());
                     }
                 });
     }
@@ -192,6 +193,7 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
+                        getView().showStatus(false, throwable.getMessage());
                         Logger.e("findSimilarFace" + throwable.getMessage());
                     }
                 });
@@ -199,15 +201,15 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
 
     public void findSimilarFace(FaceSimilarRequest faceSimilarRequest) {
         onNetWork(coreApi.getSimilar(ConstantValues.FACECORE_KEY, faceSimilarRequest))
-                .subscribe(new Action1<String>() {
+                .subscribe(new Action1<FaceSimilarResult>() {
                     @Override
-                    public void call(String s) {
-                        Logger.e("findSimilarFace" + s);
+                    public void call(FaceSimilarResult result) {
+                        getView().showSimilarFace(result);
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        Logger.e("findSimilarFace" + throwable.getMessage());
+                        getView().showStatus(false, throwable.getMessage());
                     }
                 });
     }
@@ -215,15 +217,15 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
     public void getAll() {
         onNetWork(coreApi.faceAll(ConstantValues.FACECORE_KEY))
                 .throttleFirst(1000, TimeUnit.MILLISECONDS)
-                .subscribe(new Action1<String>() {
+                .subscribe(new Action1<FaceAllResult>() {
                     @Override
-                    public void call(String s) {
-                        Logger.e("getAll " + s);
+                    public void call(FaceAllResult result) {
+                        getView().showAllFace(result);
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        Logger.e("getAll " + throwable.getMessage());
+                        getView().showStatus(false, throwable.getMessage());
                     }
                 });
     }

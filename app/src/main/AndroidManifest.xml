@@ -28,6 +28,8 @@
         <activity android:name=".view.activity.TestAcitivity" />
         <activity android:name=".view.activity.AttendActivity" />
         <activity android:name=".view.activity.FaceActivity" />
+        <activity android:name=".view.activity.AddFaceActivity" />
+        <activity android:name=".view.activity.FaceListActivity" />
         <activity android:name=".view.activity.RegisterActivity" />
         <activity
             android:name=".view.activity.LoginActivity"

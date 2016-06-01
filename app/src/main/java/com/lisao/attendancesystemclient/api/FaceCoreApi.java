@@ -1,5 +1,6 @@
 package com.lisao.attendancesystemclient.api;
 
+import com.lisao.attendancesystemclient.entity.facecore.FaceAllResult;
 import com.lisao.attendancesystemclient.entity.facecore.FaceCompareRequest;
 import com.lisao.attendancesystemclient.entity.facecore.FaceCompareResult;
 import com.lisao.attendancesystemclient.entity.facecore.FaceDetectRequest;
@@ -62,7 +63,7 @@ public interface FaceCoreApi {
      * @return
      */
     @GET(PERSONFACEGETALL)
-    Observable<String> faceAll(@Query("appkey") String appkey);
+    Observable<FaceAllResult> faceAll(@Query("appkey") String appkey);
 
     /**
      * 添加或修改一张人脸
@@ -79,5 +80,5 @@ public interface FaceCoreApi {
      * @return
      */
     @POST(PERSONFACESIMILAR)
-    Observable<String> getSimilar(@Query("appkey") String appke, @Body FaceSimilarRequest request);
+    Observable<FaceSimilarResult> getSimilar(@Query("appkey") String appke, @Body FaceSimilarRequest request);
 }

@@ -82,7 +82,7 @@ public class AttendActivity extends BaseActivity implements View.OnClickListener
         attendPresenter = new AttendPresenter(this);
         scheduleDetailPresenter = new ScheduleDetailPresenter(this);
         scheduleDetailPresenter.getTeacher(schedule.getTeacherId());
-        setSupportActionBar(toolbar);
+        setSupportToolBar(toolbar);
     }
 
     @Override
