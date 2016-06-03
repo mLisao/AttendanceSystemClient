@@ -4,6 +4,7 @@ import com.lisao.attendancesystemclient.api.ApiUtil;
 import com.lisao.attendancesystemclient.api.AttendApi;
 import com.lisao.attendancesystemclient.entity.Attend;
 import com.lisao.attendancesystemclient.entity.MyAttend;
+import com.lisao.attendancesystemclient.entity.Student;
 import com.lisao.attendancesystemclient.presenters.vu.AttendView;
 import com.lisao.attendancesystemclient.utils.PreferencesUtil;
 import com.lisao.lisaolibrary.http.factory.ApiFactory;
@@ -53,6 +54,22 @@ public class AttendPresenter extends BasePresenter<AttendView> {
                     @Override
                     public void call(List<MyAttend> attends) {
                         getView().showMyAttend(attends);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        getView().showStatus(false, throwable.getMessage());
+                    }
+                });
+    }
+
+
+    public void getAttendStudent(int id) {
+        onNetWork(attendApi.getAttendStudeng(id))
+                .subscribe(new Action1<List<Student>>() {
+                    @Override
+                    public void call(List<Student> students) {
+                        getView().showAttendStudent(students);
                     }
                 }, new Action1<Throwable>() {
                     @Override

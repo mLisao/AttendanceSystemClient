@@ -32,7 +32,7 @@ public class SplashActivity extends BaseActivity {
                     finish();
                     break;
                 case GO_ADMIN:
-                    startActivity(AttendActivity.class);
+                    startActivity(FaceActivity.class);
                     finish();
                     break;
                 default:

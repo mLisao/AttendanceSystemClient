@@ -95,7 +95,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void showSuccess(String msg) {
         showSnackBar(toolbar, msg);
-        startActivity(HomeActivity.class);
+        if (!teacherCheck.isChecked()) {
+            startActivity(HomeActivity.class);
+        } else {
+            startActivity(FaceActivity.class);
+        }
         finish();
     }
 

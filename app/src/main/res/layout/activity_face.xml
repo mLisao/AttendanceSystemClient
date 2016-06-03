@@ -10,12 +10,11 @@
     <com.lisao.attendancesystemclient.widget.IOSButton
         android:id="@+id/btn_face_getall"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="30dp"
         android:text="获取所有的人脸信息"
-        android:textSize="18sp"
         app:btn_strokeWidth="0dp"
         app:btn_text_unpressColor="@color/colorWhite"
         app:btn_unpressColor="@color/color_gray_333" />
@@ -23,12 +22,11 @@
     <com.lisao.attendancesystemclient.widget.IOSButton
         android:id="@+id/btn_face_add"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="30dp"
         android:text="添加一张人脸信息"
-        android:textSize="18sp"
         app:btn_strokeWidth="0dp"
         app:btn_text_unpressColor="@color/colorWhite"
         app:btn_unpressColor="@color/color_gray_333" />
@@ -36,14 +34,37 @@
     <com.lisao.attendancesystemclient.widget.IOSButton
         android:id="@+id/btn_face"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="30dp"
         android:text="获取最相似的人脸"
-        android:textSize="18sp"
         app:btn_strokeWidth="0dp"
         app:btn_text_unpressColor="@color/colorWhite"
         app:btn_unpressColor="@color/color_gray_333" />
+
+    <com.lisao.attendancesystemclient.widget.IOSButton
+        android:id="@+id/btn_view_attent"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:text="查看签到的学生"
+        app:btn_strokeWidth="0dp"
+        app:btn_text_unpressColor="@color/colorWhite"
+        app:btn_unpressColor="@color/color_gray_333" />
+
+    <com.lisao.attendancesystemclient.widget.IOSButton
+        android:id="@+id/btn_quit_login"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="30dp"
+        android:text="退出登录"
+        app:btn_strokeWidth="0dp"
+        app:btn_text_unpressColor="@color/colorWhite"
+        app:btn_unpressColor="@color/color_red" />
 
 </LinearLayout>

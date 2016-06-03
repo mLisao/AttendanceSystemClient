@@ -35,12 +35,6 @@
     </RelativeLayout>
 
     <com.lisao.attendancesystemclient.widget.SettingView
-        android:id="@+id/setting_my_room"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        app:setting_name="我的课堂" />
-
-    <com.lisao.attendancesystemclient.widget.SettingView
         android:id="@+id/setting_my_attend"
         android:layout_width="match_parent"
         android:layout_height="44dp"
@@ -58,4 +52,15 @@
         android:layout_height="44dp"
         app:setting_name="版本号" />
 
+    <com.lisao.attendancesystemclient.widget.IOSButton
+        android:id="@+id/btn_quit_login"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="36dp"
+        android:text="退出登录"
+        app:btn_strokeWidth="0dp"
+        app:btn_text_unpressColor="@color/colorWhite"
+        app:btn_unpressColor="@color/color_red" />
 </LinearLayout>

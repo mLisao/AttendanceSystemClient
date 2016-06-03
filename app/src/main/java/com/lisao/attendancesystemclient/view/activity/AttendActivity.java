@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSON;
 import com.lisao.attendancesystemclient.R;
 import com.lisao.attendancesystemclient.entity.MyAttend;
 import com.lisao.attendancesystemclient.entity.Schedule;
+import com.lisao.attendancesystemclient.entity.Student;
 import com.lisao.attendancesystemclient.entity.Teacher;
 import com.lisao.attendancesystemclient.presenters.AttendPresenter;
 import com.lisao.attendancesystemclient.presenters.ScheduleDetailPresenter;
@@ -140,6 +141,11 @@ public class AttendActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void showMyAttend(List<MyAttend> attends) {
+
+    }
+
+    @Override
+    public void showAttendStudent(List<Student> students) {
 
     }
 }

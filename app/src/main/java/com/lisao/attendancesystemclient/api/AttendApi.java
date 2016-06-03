@@ -2,6 +2,7 @@ package com.lisao.attendancesystemclient.api;
 
 import com.lisao.attendancesystemclient.entity.Attend;
 import com.lisao.attendancesystemclient.entity.MyAttend;
+import com.lisao.attendancesystemclient.entity.Student;
 
 import java.util.List;
 
@@ -32,4 +33,8 @@ public interface AttendApi {
      */
     @GET("attend/my/{id}")
     Observable<List<MyAttend>> getMyAttend(@Path("id") long id);
+
+
+    @GET("attend/{id}")
+    Observable<List<Student>> getAttendStudeng(@Path("id") long id);
 }

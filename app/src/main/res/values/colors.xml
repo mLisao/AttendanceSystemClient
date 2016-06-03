@@ -8,7 +8,7 @@
 
     <color name="color_item_normal">#ffffff</color>
     <color name="color_item_select">#F9F6F6</color>
-
+    <color name="color_red">#EB4651</color>
     <color name="divider_gray">#AAe2e2e2</color>
     <!--tab文字颜色-->
     <color name="tab_text_select">#2c2c2c</color>

@@ -1,6 +1,7 @@
 package com.lisao.attendancesystemclient.presenters;
 
 import android.graphics.Bitmap;
+import android.support.design.widget.Snackbar;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
@@ -39,6 +40,7 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
 
     public FaceCorePresenter(FaceView view) {
         super(view);
+//        coreApi = ApiUtil.createApi(FaceCoreApi.class, ServerAddress.FACECORE);
         coreApi = ApiUtil.createApi(FaceCoreApi.class);
     }
 
@@ -118,22 +120,31 @@ public class FaceCorePresenter extends BasePresenter<FaceView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Action1<FaceDetectResult>() {
-                    @Override
-                    public void call(FaceDetectResult faceDetectResult) {
-                        String base64feature = faceDetectResult.getFacemodels()[0].getBase64feature();
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                               @Override
+                               public void call(FaceDetectResult faceDetectResult) {
+                                   if (faceDetectResult.getFacemodels().length > 0) {
+                                       String base64feature = faceDetectResult.getFacemodels()[0].getBase64feature();
+                                       try {
+                                           Thread.sleep(1000);
+                                       } catch (InterruptedException e) {
+                                           e.printStackTrace();
+                                       }
+                                       updateFace(faceId, nickName, base64Bitmap, base64feature);
+
+                                   } else {
+                                       getView().showStatus(false, "未检测到人脸信息，请调整相机角度重新拍摄");
+                                   }
+                               }
+                           }
+
+                        , new Action1<Throwable>() {
+                            @Override
+                            public void call(Throwable throwable) {
+                                getView().showStatus(false, throwable.getMessage());
+                            }
                         }
-                        updateFace(faceId, nickName, base64Bitmap, base64feature);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        getView().showStatus(false, throwable.getMessage());
-                    }
-                });
+
+                );
     }
 
     public void updateFace(final String faceId, String nickName, final String base64Bitmap, String base64feature) {

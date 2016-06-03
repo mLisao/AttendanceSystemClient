@@ -1,5 +1,6 @@
 package com.lisao.attendancesystemclient.view.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
@@ -12,6 +13,8 @@ import com.lisao.attendancesystemclient.entity.facecore.FaceSimilarResult;
 import com.lisao.attendancesystemclient.presenters.FaceCorePresenter;
 import com.lisao.attendancesystemclient.presenters.vu.FaceView;
 import com.lisao.attendancesystemclient.utils.BitmapUtil;
+import com.lisao.attendancesystemclient.utils.DialogUtil;
+import com.lisao.attendancesystemclient.utils.PreferencesUtil;
 import com.lisao.attendancesystemclient.view.base.BaseActivity;
 import com.lisao.attendancesystemclient.view.base.ViewBind;
 import com.lisao.attendancesystemclient.widget.IOSButton;
@@ -30,8 +33,15 @@ public class FaceActivity extends BaseActivity implements View.OnClickListener, 
     @ViewBind(R.id.btn_face)
     private IOSButton btn_face;
 
+    @ViewBind(R.id.btn_view_attent)
+    private IOSButton btn_view_attent;
+
+    @ViewBind(R.id.btn_quit_login)
+    private IOSButton btn_quit_login;
+
     @ViewBind(R.id.toolbar)
     private Toolbar toolbar;
+
 
     private static final int CAMERA_SCAN = 1;
     private static final int CAMERA_ADD = 2;
@@ -50,6 +60,8 @@ public class FaceActivity extends BaseActivity implements View.OnClickListener, 
         btn_face.setOnClickListener(this);
         btn_face_getall.setOnClickListener(this);
         btn_face_add.setOnClickListener(this);
+        btn_quit_login.setOnClickListener(this);
+        btn_view_attent.setOnClickListener(this);
     }
 
     @Override
@@ -66,6 +78,25 @@ public class FaceActivity extends BaseActivity implements View.OnClickListener, 
             case R.id.btn_face_add:
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, CAMERA_ADD);
+                break;
+            case R.id.btn_quit_login:
+                DialogUtil.showDailog(mContext, "确认退出?", "退出当前账号并退出应用，确认这么做吗？", new DialogUtil.onListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PreferencesUtil.putBoolean(PreferencesUtil.IS_LOGIN, false);
+                        startActivity(LoginActivity.class);
+                        finish();
+                    }
+                }, new DialogUtil.onListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                break;
+            case R.id.btn_view_attent:
+                //查看已经签到的学生
+                startActivity(AttendStudentActivity.class);
                 break;
         }
     }
